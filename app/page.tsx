@@ -13,6 +13,10 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 const formSchema = z.object({
   name: z.string().min(3).max(20),
   emailAddress: z.string().email(),
+  phoneNumber:z.string().min(3).max(20),
+  productName:z.string().min(3).max(20),
+  quantity:z.string().min(1).max(2),
+  price:z.string().min(1).max(3),
   paymenttype: z.enum(["Knet","Visa","COD"],{
     required_error: "You need to select a Payment method."}),
 })
@@ -24,6 +28,12 @@ export default function Home() {
     defaultValues:{
       name:"",
       emailAddress: "",
+      phoneNumber: "",
+      productName: "",
+      quantity: "",
+      price: "",
+   
+
       
     }
   });
@@ -57,7 +67,60 @@ export default function Home() {
               <FormControl>
                 <Input 
                   placeholder='Email address' 
-                  type='email'
+                  
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage/>
+            </FormItem>
+          }}/>
+
+          <FormField control={form.control} name="phoneNumber" render={({field}) => {
+            return <FormItem>
+              <FormLabel>Phone Number</FormLabel>
+              <FormControl>
+                <Input 
+                  placeholder='Phone Number' 
+                 
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage/>
+            </FormItem>
+          }}/>
+          <FormField control={form.control} name="productName" render={({field}) => {
+            return <FormItem>
+              <FormLabel>Product Name</FormLabel>
+              <FormControl>
+                <Input 
+                  placeholder='Product Name' 
+              
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage/>
+            </FormItem>
+          }}/>
+          <FormField control={form.control} name="quantity" render={({field}) => {
+            return <FormItem>
+              <FormLabel>Quantity</FormLabel>
+              <FormControl>
+                <Input 
+                  placeholder='Quantity' 
+              
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage/>
+            </FormItem>
+          }}/>
+          <FormField control={form.control} name="price" render={({field}) => {
+            return <FormItem>
+              <FormLabel>Price</FormLabel>
+              <FormControl>
+                <Input 
+                  placeholder='Price' 
+              
                   {...field}
                 />
               </FormControl>
